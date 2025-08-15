@@ -114,6 +114,12 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, getUserById, registerUser, loginUser, updateUser, deleteUser };
+// POST logout user
+const logoutUser = (req, res) => {
+  // Just sends a logout message (token not stored or invalidated)
+  res.status(200).json({ message: "Logout successful" });
+};
+
+module.exports = { getUsers, getUserById, registerUser, loginUser, updateUser, deleteUser, logoutUser };
 
 

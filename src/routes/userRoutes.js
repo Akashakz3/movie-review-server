@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getUsers, getUserById, registerUser, loginUser, updateUser, deleteUser } = require('../controllers/userController');
+const { getUsers, getUserById, registerUser, loginUser, updateUser, logoutUser, deleteUser } = require('../controllers/userController');
 
 // Routes
 router.get('/', getUsers);             
@@ -17,6 +17,9 @@ router.post('/login', loginUser);
 
 router.put('/:id', updateUser);        
 // PUT update user
+
+router.post('/logout', logoutUser); 
+//  POST logout user
 
 router.delete('/:id', deleteUser);     
 // DELETE user

@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { getReviews, addReview, updateReview, deleteReview } = require('../controllers/reviewController');
+const { getReviews, addReview, updateReview, deleteReview, getReviewsByMovie, getUserReviews } = require('../controllers/reviewController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 // Public route - anyone can see reviews
 router.get('/', getReviews);
+
+// GET /api/reviews/movie/:movieId
+router.get('/movie/:movieId', getReviewsByMovie);
+
+router.get('/user/:userId', getUserReviews);
 
 //  Protected route - login required to add review
 router.post('/', authMiddleware, addReview);

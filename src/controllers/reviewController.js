@@ -1,5 +1,6 @@
 const Review = require('../models/reviewModel');
 
+
 //  GET all reviews
 const getReviews = async (req, res) => {
   try {
@@ -63,5 +64,34 @@ const deleteReview = async (req, res) => {
   }
 };
 
-module.exports = { getReviews, addReview, updateReview, deleteReview };
+// GET all reviews of a specific movie
+const getReviewsByMovie = async (req, res) => {
+  try {
+    const { movieId } = req.params;
+    const reviews = await Review.find({ movie: movieId }).populate('user', 'username');
+    res.json(reviews);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching reviews', error: err.message });
+  }
+};
+
+
+// Get all reviews by a specific user
+const getUserReviews = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const reviews = await Review.find({ user: userId }).populate('movie');
+    
+    if (!reviews || reviews.length === 0) {
+      return res.status(404).json({ message: "No reviews found for this user" });
+    }
+
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports = { getReviews, addReview, updateReview, deleteReview, getReviewsByMovie, getUserReviews };
 
