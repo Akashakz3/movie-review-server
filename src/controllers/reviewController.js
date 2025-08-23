@@ -94,4 +94,3 @@ const getUserReviews = async (req, res) => {
 
 
 module.exports = { getReviews, addReview, updateReview, deleteReview, getReviewsByMovie, getUserReviews };
-

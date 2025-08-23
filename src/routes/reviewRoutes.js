@@ -21,4 +21,3 @@ router.put('/:id', authMiddleware, updateReview);
 router.delete('/:id', authMiddleware, deleteReview);
 
 module.exports = router;
-

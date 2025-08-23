@@ -121,5 +121,3 @@ const logoutUser = (req, res) => {
 };
 
 module.exports = { getUsers, getUserById, registerUser, loginUser, updateUser, deleteUser, logoutUser };
-
-
